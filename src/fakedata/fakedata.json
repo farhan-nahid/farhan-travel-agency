@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "name": "Bike",
+    "location1": "Mirpur",
+    "location2": "Dhanmondi",
+    "capacity": "4",
+    "cost": "90",
+    "image": "https://i.ibb.co/9Ty35KR/bike-png.png"
+  },
+  {
+    "id": "2",
+    "name": "Car",
+    "location1": "Mirpur",
+    "location2": "Dhanmondi",
+    "capacity": "4",
+    "cost": "90",
+    "image": "https://i.ibb.co/0nzZJbc/carpng.png"
+  },
+  {
+    "id": "3",
+    "name": "Bus",
+    "location1": "Mirpur",
+    "location2": "Dhanmondi",
+    "capacity": "4",
+    "cost": "90",
+    "image": "https://i.ibb.co/rtrfMV8/bus.png"
+  },
+  {
+    "id": "4",
+    "name": "Train",
+    "location1": "Mirpur",
+    "location2": "Dhanmondi",
+    "capacity": "4",
+    "cost": "90",
+    "image": "https://i.ibb.co/5h9ShCr/trainpng.png"
+  }
+]
