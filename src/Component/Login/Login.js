@@ -19,6 +19,7 @@ if (!firebase.apps.length) {
 
 const Login = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  console.log(loggedInUser);
   const history = useHistory();
   const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } }
@@ -43,6 +44,28 @@ const Login = () => {
         console.log(errorCode, errorMessage);
     });
   }
+
+  // facebook provider function
+const handelFacebookSignIn = () => {
+  const facebookProvider = new firebase.auth.FacebookAuthProvider();
+
+  firebase
+  .auth()
+    .signInWithPopup(facebookProvider)
+    .then((result) => {
+      const {displayName , email} = result.user;
+      const signedInUser ={ name: displayName, email : email}
+      setLoggedInUser  (signedInUser);
+      history.replace(from)
+   })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+  });
+}
+
+
 return (
     <div className="container">
         <div className="form">
@@ -61,7 +84,7 @@ return (
                   <img src={google} alt="" />
                   <span>Continue with Google</span>
               </div>
-              <div className="icon" onClick={handelGoogleSignIn}>
+              <div className="icon" onClick={handelFacebookSignIn}>
                   <img src={facebook} alt="" />
                   <span>Continue with Facebook</span>
               </div>
