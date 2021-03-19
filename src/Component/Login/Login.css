@@ -1,1 +1,66 @@
+.form {
+  margin: auto;
+  text-align: center;
+  width: 40%;
+  border: 1px solid gray;
+  margin-top: 70px;
+  padding: 20px;
+}
 
+.icon {
+  text-align: center;
+  height: 51px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 461px;
+  background: #000;
+  position: relative;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #c7c7c7;
+  box-sizing: border-box;
+  border-radius: 57px;
+  margin-bottom: 20px;
+  line-height: 51px;
+}
+
+.icon img {
+  height: 37px;
+  position: absolute;
+  left: 6%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.stateLine {
+  margin: 50px auto;
+  text-align: center;
+  font-size: 20px;
+  position: relative;
+}
+
+.stateLine:before {
+  content: "";
+  width: 200px;
+  display: block;
+  position: absolute;
+  height: 2px;
+  background-color: #aaaaaa;
+  left: 30px;
+  top: 50%;
+}
+
+.stateLine:after {
+  content: "";
+  width: 200px;
+  display: block;
+  position: absolute;
+  height: 2px;
+  background-color: #aaaaaa;
+  right: 30px;
+  top: 50%;
+}
+
+.StateLine {
+  text-align: center;
+}
