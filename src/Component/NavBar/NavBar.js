@@ -6,6 +6,7 @@ import './NavBar.css';
 
 const NavBar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const {id} = loggedInUser;
     return (
             <Navbar bg="light"  expand="lg" >
                 <div className = "container">
@@ -14,10 +15,10 @@ const NavBar = () => {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ml-auto ">
                                 <Nav.Link as={Link} to ="/home" >Home</Nav.Link>
-                                <Nav.Link as={Link} to ="/">Destination</Nav.Link>
+                                <Nav.Link as={Link} to ={`/destination/${id}`}>Destination</Nav.Link>
                                 <Nav.Link as={Link} to ="/blog" >Blog</Nav.Link>
                                 <Nav.Link as={Link} to ="/contact" >Contact</Nav.Link>
-                                <Nav.Link as={Link} to ="/login"  className="btn btn-info text-white">Log In</Nav.Link>
+                                <Nav.Link as={Link} to ="/login"  className="btn btn-info text-white">Log In </Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                 </div> 

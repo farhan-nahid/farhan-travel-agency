@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useParams } from 'react-router';
 import fakeData from '../../fakeData/fakeData.json';
+import SimpleMap from '../Map/Map';
 import './BookNow.css';
   
 
@@ -48,7 +49,7 @@ const BookNow = () => {
                 </div>
             </div>
             <div className="col-md-8">
-
+               <SimpleMap />
             </div>
         </div>
     </section>

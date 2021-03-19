@@ -1,7 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import React, { useContext } from 'react';
-//import { Button } from 'react-bootstrap';
 import { useHistory, useLocation } from "react-router";
 import { UserContext } from '../../App';
 import { firebaseConfig } from './firebase.config';
@@ -20,6 +19,7 @@ if (!firebase.apps.length) {
 const Login = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   console.log(loggedInUser);
+  
   const history = useHistory();
   const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } }
