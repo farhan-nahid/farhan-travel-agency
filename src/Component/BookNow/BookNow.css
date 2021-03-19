@@ -1,0 +1,40 @@
+.book-details {
+  background-color: #e2effd;
+  border-radius: 20px;
+}
+
+.location {
+  background-color: tomato;
+  border-radius: 10px;
+  color: white;
+}
+
+.transport-quality {
+  margin-top: 30px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.transport-image img {
+  height: 50px;
+  width: 50px;
+}
+
+.transport-name {
+  margin-left: 25px;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.transport-capacity {
+  margin-left: 25px;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.transport-cost {
+  margin-left: 60px;
+  font-weight: 800;
+  font-size: 16px;
+}

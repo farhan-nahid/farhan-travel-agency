@@ -5,6 +5,7 @@ import {
   Route, Switch
 } from "react-router-dom";
 import Blog from './Component/Blog/Blog';
+import BookNow from "./Component/BookNow/BookNow";
 import Contact from './Component/Contact/Contact';
 import Destination from './Component/Destination/Destination';
 import Home from './Component/Home/Home';
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <PrivateRoute path="/destination/:id">
           <Destination />
+          </PrivateRoute>
+          <PrivateRoute path="/book/:id">
+            <BookNow />
           </PrivateRoute>
           <Route path="/blog">
             <Blog />
