@@ -11,6 +11,7 @@ import Home from './Component/Home/Home';
 import Login from './Component/Login/Login';
 import NavBar from "./Component/NavBar/NavBar";
 import NotFound from "./Component/NotFound/NotFound";
+import PrivateRoute from "./Component/PrivateRoute/PrivateRoute";
 //import PrivateRoute from "./Component/PrivateRoute/PrivateRoute";
 
 export const UserContext = createContext ();
@@ -27,9 +28,9 @@ function App() {
         <Route path='/home'>
           <Home />
         </Route>
-        <Route path="/destination/:id">
+        <PrivateRoute path="/destination/:id">
           <Destination />
-          </Route>
+          </PrivateRoute>
           <Route path="/blog">
             <Blog />
           </Route>
