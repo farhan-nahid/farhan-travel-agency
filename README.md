@@ -1,6 +1,6 @@
 # Website Name : Farhan's Travel Agency
 
-#Features
+#Features & Technology
 
 * Navbar daynamic route
 * Private Route
@@ -9,13 +9,14 @@
 * Facebook Auth
 * Fakedata
 * Responsive
+* React
+* React-router
+* bootstarp
+* Fontawesome
+* Firebase-authentication
 
-#Technology i use
 
-*React
-*React-router
-*bootstarp
-*Fontawesome
-*Firebase-authentication
 
-#Website Link<------https://farhan-travel-agency.web.app/------>
+
+
+#Website Link<------  https://farhan-travel-agency.web.app/  ------->
