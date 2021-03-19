@@ -6,7 +6,7 @@
     "location2": "Dhanmondi",
     "capacity": "4",
     "cost": "90",
-    "image": "https://i.ibb.co/9Ty35KR/bike-png.png"
+    "image": "https://i.ibb.co/Tkp0rWR/Frame.png"
   },
   {
     "id": "2",
@@ -15,7 +15,7 @@
     "location2": "Dhanmondi",
     "capacity": "4",
     "cost": "90",
-    "image": "https://i.ibb.co/0nzZJbc/carpng.png"
+    "image": "https://i.ibb.co/SsWYbB2/Frame-2.png"
   },
   {
     "id": "3",
@@ -24,7 +24,7 @@
     "location2": "Dhanmondi",
     "capacity": "4",
     "cost": "90",
-    "image": "https://i.ibb.co/rtrfMV8/bus.png"
+    "image": "https://i.ibb.co/mh2ZcM4/Frame-1.png"
   },
   {
     "id": "4",
@@ -33,6 +33,6 @@
     "location2": "Dhanmondi",
     "capacity": "4",
     "cost": "90",
-    "image": "https://i.ibb.co/5h9ShCr/trainpng.png"
+    "image": "https://i.ibb.co/Fs9sp5q/Group.png"
   }
 ]

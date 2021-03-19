@@ -1,3 +1,4 @@
+import { createContext, useState } from "react";
 import {
   BrowserRouter as Router,
 
@@ -10,17 +11,23 @@ import Home from './Component/Home/Home';
 import Login from './Component/Login/Login';
 import NavBar from "./Component/NavBar/NavBar";
 import NotFound from "./Component/NotFound/NotFound";
+//import PrivateRoute from "./Component/PrivateRoute/PrivateRoute";
 
+export const UserContext = createContext ();
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({})
   return (
+   
+    <UserContext.Provider value={ [loggedInUser, setLoggedInUser] }>
+      <p>Name: {loggedInUser.name}</p>
     <Router>
      <NavBar />
       <Switch>
         <Route path='/home'>
           <Home />
         </Route>
-        <Route path="/destination">
+        <Route path="/destination/:id">
           <Destination />
           </Route>
           <Route path="/blog">
@@ -32,7 +39,7 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
-          <Route exact="/">
+          <Route exact path="/">
             <Home />
           </Route>
           <Route path="*">
@@ -40,6 +47,7 @@ function App() {
           </Route>
       </Switch>
     </Router>
+    </UserContext.Provider>
   );
 }
 

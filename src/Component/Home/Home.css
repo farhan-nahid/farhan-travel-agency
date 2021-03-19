@@ -1,0 +1,18 @@
+main {
+  background-image: url(./bg-image/travel.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 1200px;
+  overflow: hidden;
+}
+
+.main {
+  margin-top: 150px;
+}
+
+@media (max-width: 500px) {
+  .main {
+    margin-top: 50px;
+  }
+}

@@ -1,0 +1,12 @@
+.transport-img {
+  height: 150px;
+  width: 150px;
+  margin: auto;
+  padding: 20px;
+}
+
+.name {
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+}
