@@ -7,6 +7,7 @@
 * Email Auth
 * Gmail Auth
 * Facebook Auth
+* Map
 * Fakedata
 * Responsive
 * React
@@ -14,6 +15,7 @@
 * bootstarp
 * Fontawesome
 * Firebase-authentication
+* 
 
 
 
