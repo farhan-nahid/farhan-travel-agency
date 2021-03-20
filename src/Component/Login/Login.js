@@ -28,6 +28,7 @@ const Login = () => {
     successful : false,
   })
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  const [passwordError, setPasswordError] = useState()
  
   const history = useHistory();
   const location = useLocation();
@@ -93,9 +94,8 @@ const handleLogin = (event) => {
     history.replace(from)
   })
   .catch((error) => {
-    const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(errorCode, errorMessage);
+    setPasswordError( errorMessage );
   });
   event.preventDefault();
 }
@@ -164,6 +164,7 @@ return (
           <p className="text-danger text-center mt-5">{user.error}</p>
         }
 
+        <p className="text-center text-danger mb-3">{passwordError}</p>
         <div className="form">
           {newUser && <h5 className="mb-4">Create an Account</h5>}
           {!newUser && <h5 className="mb-4">Log In</h5>}

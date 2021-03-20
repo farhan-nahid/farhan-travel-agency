@@ -15,9 +15,9 @@ const BookNow = () => {
     console.log(transport);
     console.log(id);
     return (
-        <section className="container  mt-5">
+        <section className="container">
         <div className="row">
-            <div className="col-md-4 book-details p-5">
+            <div className="col-md-4 book-details mt-5  p-5">
                 <div className="location p-3">
                     <h5> <span><FontAwesomeIcon icon={faMapMarker} /></span> {transport.location1}</h5>
                     <h5 className="mt-4"> <span><FontAwesomeIcon icon={faMapMarkerAlt} /></span> {transport.location2}</h5>
@@ -48,7 +48,7 @@ const BookNow = () => {
                     <span className="transport-cost">{transport.cost}</span>
                 </div>
             </div>
-            <div className="col-md-8">
+            <div className="col-md-8 mt-5">
                <SimpleMap />
             </div>
         </div>
