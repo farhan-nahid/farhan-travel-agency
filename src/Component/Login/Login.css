@@ -5,6 +5,11 @@
   padding: 20px;
 }
 
+.link {
+  cursor: pointer;
+  color: #0069d9;
+}
+
 .icon {
   text-align: center;
   height: 47px;

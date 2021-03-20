@@ -17,6 +17,7 @@ if (!firebase.apps.length) {
 
 
 const Login = () => {
+  const [newUser, setNewUser] = useState(false);
   const [user, setUser] = useState({
     isSignedIn : false,
     name : "",
@@ -25,7 +26,6 @@ const Login = () => {
     confirmPassword : "",
     error : "",
     successful : false,
-
   })
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
  
@@ -34,6 +34,87 @@ const Login = () => {
   const { from } = location.state || { from: { pathname: "/" } }
 
   
+
+// input value function
+const handleBlur = (e) =>{
+  let isFieldValid = true; 
+
+ if(e.target.name === "email"){
+   isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
+ }
+  if(e.target.name === "password"){
+   const isPasswordValid = e.target.value.length > 7;
+   const passwordHasNumber =  /\d{1}/.test(e.target.value);
+   isFieldValid = isPasswordValid && passwordHasNumber;
+ }
+  if(e.target.name === "confirmPassword"){
+   const isPasswordValid = e.target.value.length > 7;
+   const passwordHasNumber =  /\d{1}/.test(e.target.value);
+   isFieldValid = isPasswordValid && passwordHasNumber;
+ }
+ if(isFieldValid){
+    const newUserInfo = {...user}
+    newUserInfo[e.target.name] = e.target.value;
+   setUser(newUserInfo);
+ }
+}
+
+// form submit function
+const handleSignUp = (e) => {
+  const newUserInfo = { ...user }
+  if(user.name && user.email && user.password && user.confirmPassword){
+    firebase
+    .auth()
+    .createUserWithEmailAndPassword(user.email, user.password)
+       .then((res) => {
+      newUserInfo.error ="";
+      newUserInfo.successful = true;
+      setUser(newUserInfo);
+      updateUserName(user.name)
+      console.log(res.user);
+  })
+  .catch((error) => {
+    const newUserInfo = { ...user }
+    newUserInfo.error = error.message;
+    newUserInfo.successful = false; 
+    setUser(newUserInfo);
+  });
+  }
+  e.preventDefault();
+}
+
+const handleLogin = (event) => {
+  firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+  .then((result) => {
+    console.log(result);
+    const {displayName , email} = result.user;
+    const signedInUser ={ name: displayName, email : email}
+    setLoggedInUser  (signedInUser);
+    history.replace(from)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  });
+  event.preventDefault();
+}
+
+const updateUserName = name =>{
+  const  user = firebase.auth().currentUser;
+
+user.updateProfile({
+  displayName: name,
+})
+.then(function() {
+  console.log("name update successfully");
+})
+.catch(function(error) {
+  console.log(error);
+});
+}
+
+
   // google provider function
   const handelGoogleSignIn= () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -74,52 +155,6 @@ const handelFacebookSignIn = () => {
   });
 }
 
-
-
-const handleBlur = (e) =>{
-  let isFieldValid = true; 
-
- if(e.target.name === "email"){
-   isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
- }
-  if(e.target.name === "password"){
-   const isPasswordValid = e.target.value.length > 7;
-   const passwordHasNumber =  /\d{1}/.test(e.target.value);
-   isFieldValid = isPasswordValid && passwordHasNumber;
- }
-  if(e.target.name === "confirmPassword"){
-   const isPasswordValid = e.target.value.length > 7;
-   const passwordHasNumber =  /\d{1}/.test(e.target.value);
-   isFieldValid = isPasswordValid && passwordHasNumber;
- }
- if(isFieldValid){
-    const newUserInfo = {...user}
-    newUserInfo[e.target.name] = e.target.value;
-   setUser(newUserInfo);
- }
-}
-
-const handleSubmit = (e) => {
-  const newUserInfo = { ...user }
-  if(user.name && user.email && user.password && user.confirmPassword){
-    firebase
-    .auth()
-    .createUserWithEmailAndPassword(user.email, user.password)
-       .then((res) => {
-      newUserInfo.error ="";
-      newUserInfo.successful = true;
-      setUser(newUserInfo);
-  })
-  .catch((error) => {
-    const newUserInfo = { ...user }
-    newUserInfo.error = error.message;
-    newUserInfo.successful = false; 
-    setUser(newUserInfo);
-  });
-  }
-  e.preventDefault();
-}
-
 return (
     <div className="container">
 
@@ -130,27 +165,57 @@ return (
         }
 
         <div className="form">
-          <h5 className="mb-4">Create an Account</h5>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="name" className="form-control" onBlur={handleBlur} placeholder=" Enter Your Name" required /> <br/> 
+          {newUser && <h5 className="mb-4">Create an Account</h5>}
+          {!newUser && <h5 className="mb-4">Log In</h5>}
+            <form>
+                {newUser && <input type="text" name="name" className="form-control" onBlur={handleBlur} placeholder=" Enter Your Name" required /> } <br/> 
+
                 <input type="email"  name="email" className="form-control" onBlur={handleBlur} placeholder="Enter Your Username or Email" required /> <br/> 
+
                 <input type="password"  name="password" className="form-control" onBlur={handleBlur}  placeholder=" Type Your  Password" required />
-                <small  class=" text-muted">Your Password must have eight digit & one number</small> <br/> <br/>
-                <input type="password"  name="confirmPassword" className="form-control" onBlur={handleBlur}placeholder="Confirm Your Password" required /> <br/> 
-                <input type="submit" className="form-control btn btn-info"  value="Create New Account"/>
+                <small  class=" text-muted">Your Password must have eight digit & one number</small> 
+                <br/> <br/>
+
+                {newUser && <input type="password"  name="confirmPassword" className="form-control" onBlur={handleBlur}placeholder="Confirm Your Password" required />} <br/> 
+
+                {
+                 newUser && <input type="submit" onClick={handleSignUp} className="form-control btn btn-info"  value="Create New Account"/>
+                 }
+
+                 {
+                 !newUser && <input type="submit" onClick={handleLogin} className="form-control btn btn-info"  value="Log In"/>
+                 }
+                 
               </form>
-              <h6 className="mt-2 text-center">Already Have a Account ? log in</h6>
+
+             { 
+                newUser && <h6 className="mt-2 text-center">Already Have a Account ?
+               <span className="link" onClick={() =>setNewUser(!newUser)}> log in</span>
+               </h6>
+              }
+              
+             { 
+                !newUser && <h6 className="mt-2 text-center">Don't Have  Account ?
+               <span className="link" onClick={() =>setNewUser(!newUser)}> Create New Account</span>
+               </h6>
+              }
+               
         </div>
         <div>
             <h1 className="StateLine"><span className="stateLine">Or</span></h1>
-            <div className="icon" onClick={handelGoogleSignIn}>
-                  <img src={google} alt="" />
-                  <span>Continue with Google</span>
-              </div>
-              <div className="icon" onClick={handelFacebookSignIn}>
-                  <img src={facebook} alt="" />
-                  <span>Continue with Facebook</span>
-              </div>
+
+                            {/* google sign in */}
+                  <div className="icon" onClick={handelGoogleSignIn}>
+                      <img src={google} alt="" />
+                      <span>Continue with Google</span>
+                  </div>
+
+                               {/* facebook sign in */}
+                  <div className="icon" onClick={handelFacebookSignIn}>
+                      <img src={facebook} alt="" />
+                      <span>Continue with Facebook</span>
+                  </div>
+            
         </div>
     </div>
 );
