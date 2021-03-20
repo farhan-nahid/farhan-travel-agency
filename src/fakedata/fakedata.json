@@ -5,7 +5,9 @@
     "location1": "Mirpur",
     "location2": "Dhanmondi",
     "capacity": "4",
-    "cost": "$90",
+    "cost1": "$90",
+    "cost2": "$70",
+    "cost3": "$50",
     "image": "https://i.ibb.co/Tkp0rWR/Frame.png"
   },
   {
@@ -14,7 +16,9 @@
     "location1": "Mirpur",
     "location2": "Dhanmondi",
     "capacity": "4",
-    "cost": "$90",
+    "cost1": "$90",
+    "cost2": "$70",
+    "cost3": "$50",
     "image": "https://i.ibb.co/SsWYbB2/Frame-2.png"
   },
   {
@@ -23,7 +27,9 @@
     "location1": "Mirpur",
     "location2": "Dhanmondi",
     "capacity": "4",
-    "cost": "$90",
+    "cost1": "$90",
+    "cost2": "$70",
+    "cost3": "$50",
     "image": "https://i.ibb.co/mh2ZcM4/Frame-1.png"
   },
   {
@@ -32,7 +38,9 @@
     "location1": "Mirpur",
     "location2": "Dhanmondi",
     "capacity": "4",
-    "cost": "$90",
+    "cost1": "$90",
+    "cost2": "$70",
+    "cost3": "$50",
     "image": "https://i.ibb.co/Fs9sp5q/Group.png"
   }
 ]

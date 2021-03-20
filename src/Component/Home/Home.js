@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import transports from '../../fakeData/fakeData.json';
 import SingleTransport from '../Single-Transport/SingleTransport';
-//import {image} from './bg-image/travel.png'
 import './Home.css';
 
 const Home = () => {
