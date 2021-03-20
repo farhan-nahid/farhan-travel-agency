@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory, useLocation } from "react-router";
 import { UserContext } from '../../App';
 import { firebaseConfig } from './firebase.config';
@@ -17,9 +17,18 @@ if (!firebase.apps.length) {
 
 
 const Login = () => {
+  const [user, setUser] = useState({
+    isSignedIn : false,
+    name : "",
+    email : "",
+    password : "",
+    confirmPassword : "",
+    error : "",
+    successful : false,
+
+  })
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-  console.log(loggedInUser);
-  
+ 
   const history = useHistory();
   const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } }
@@ -56,7 +65,7 @@ const handelFacebookSignIn = () => {
       const {displayName , email} = result.user;
       const signedInUser ={ name: displayName, email : email}
       setLoggedInUser  (signedInUser);
-      history.replace(from)
+      history.replace(from);
    })
     .catch((error) => {
       const errorCode = error.code;
@@ -66,17 +75,71 @@ const handelFacebookSignIn = () => {
 }
 
 
+
+const handleBlur = (e) =>{
+  let isFieldValid = true; 
+
+ if(e.target.name === "email"){
+   isFieldValid = /\S+@\S+\.\S+/.test(e.target.value);
+ }
+  if(e.target.name === "password"){
+   const isPasswordValid = e.target.value.length > 7;
+   const passwordHasNumber =  /\d{1}/.test(e.target.value);
+   isFieldValid = isPasswordValid && passwordHasNumber;
+ }
+  if(e.target.name === "confirmPassword"){
+   const isPasswordValid = e.target.value.length > 7;
+   const passwordHasNumber =  /\d{1}/.test(e.target.value);
+   isFieldValid = isPasswordValid && passwordHasNumber;
+ }
+ if(isFieldValid){
+    const newUserInfo = {...user}
+    newUserInfo[e.target.name] = e.target.value;
+   setUser(newUserInfo);
+ }
+}
+
+const handleSubmit = (e) => {
+  const newUserInfo = { ...user }
+  if(user.name && user.email && user.password && user.confirmPassword){
+    firebase
+    .auth()
+    .createUserWithEmailAndPassword(user.email, user.password)
+       .then((res) => {
+      newUserInfo.error ="";
+      newUserInfo.successful = true;
+      setUser(newUserInfo);
+  })
+  .catch((error) => {
+    const newUserInfo = { ...user }
+    newUserInfo.error = error.message;
+    newUserInfo.successful = false; 
+    setUser(newUserInfo);
+  });
+  }
+  e.preventDefault();
+}
+
 return (
     <div className="container">
+
+        { 
+          user.successful ?  <p className="text-success text-center mt-5"> Successfully Created Account </p> 
+          : 
+          <p className="text-danger text-center mt-5">{user.error}</p>
+        }
+
         <div className="form">
-            <form action="">
-                <input type="text" className="form-control" placeholder="Name" /> <br/> <br/>
-                <input type="email" className="form-control" placeholder="Username or Email" /> <br/> <br/>
-                <input type="password" className="form-control"  placeholder="Password" /> <br/> <br/>
-                <input type="password" className="form-control" placeholder="Confirm Password" /> <br/> <br/>
+          <h5 className="mb-4">Create an Account</h5>
+            <form onSubmit={handleSubmit}>
+                <input type="text" name="name" className="form-control" onBlur={handleBlur} placeholder=" Enter Your Name" required /> <br/> 
+                <input type="email"  name="email" className="form-control" onBlur={handleBlur} placeholder="Enter Your Username or Email" required /> <br/> 
+                <input type="password"  name="password" className="form-control" onBlur={handleBlur}  placeholder=" Type Your  Password" required />
+                <small  class=" text-muted">Your Password must have eight digit & one number</small> <br/> <br/>
+                <input type="password"  name="confirmPassword" className="form-control" onBlur={handleBlur}placeholder="Confirm Your Password" required /> <br/> 
                 <input type="submit" className="form-control btn btn-info"  value="Create New Account"/>
               </form>
-              <h6 className="mt-2">Already Have a Account ? log in</h6>
+              <h6 className="mt-2 text-center">Already Have a Account ? log in</h6>
         </div>
         <div>
             <h1 className="StateLine"><span className="stateLine">Or</span></h1>

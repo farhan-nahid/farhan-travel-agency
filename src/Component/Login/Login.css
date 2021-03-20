@@ -1,19 +1,18 @@
 .form {
   margin: auto;
-  text-align: center;
-  width: 40%;
+  width: 400px;
   border: 1px solid gray;
-  margin-top: 70px;
   padding: 20px;
 }
 
 .icon {
   text-align: center;
-  height: 51px;
+  height: 47px;
   cursor: pointer;
   font-size: 18px;
-  width: 461px;
+  width: 415px;
   background: #000;
+  font-weight: 500;
   position: relative;
   margin: 0 auto;
   background: #ffffff;
