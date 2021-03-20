@@ -9,7 +9,7 @@
 * Facebook Auth
 * Map
 * Fakedata
-* Responsive
+* Responsive(Desktop, Laptop, Mobile) 
 * React
 * React-router
 * bootstarp
