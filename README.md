@@ -14,8 +14,7 @@
 * React-router
 * bootstarp
 * Fontawesome
-* Firebase-authentication
-* 
+* Firebase-authentication 
 
 
 
