@@ -28,6 +28,7 @@ const Login = () => {
     successful : false,
   })
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  console.log(loggedInUser);
   const [passwordError, setPasswordError] = useState()
  
   const history = useHistory();
@@ -123,8 +124,9 @@ user.updateProfile({
     .auth()
       .signInWithPopup(googleProvider)
       .then((result) => {
-        const {displayName , email} = result.user;
-        const signedInUser ={ name: displayName, email : email}
+    //    console.log(result);
+        const {displayName ,  photoURL} = result.user;
+        const signedInUser ={ name: displayName,img:photoURL}
         setLoggedInUser  (signedInUser);
         history.replace(from)
       })
